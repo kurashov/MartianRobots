@@ -2,13 +2,13 @@
 
 namespace MartianRobots
 {
-    internal class MarsSurface : IMarsSurface
+    public class  MarsSurface : IMarsSurface
     {
-        public MarsSurface( int contRows, int countColumns )
+        internal MarsSurface( int contRows, int countColumns )
         {
-            Surface = new MarsSurfacePointState[contRows, contRows];
+            Surface = new MarsSurfacePointState[contRows, countColumns];
         }
-
+ 
         public MarsSurfacePointState[,] Surface { get; }
     }
 }

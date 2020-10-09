@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Composition;
 using System.Numerics;
 using MartianRobots.Contracts;
 
 namespace MartianRobots
 {
-    internal class MoveCoordinator : IMoveCoordinator
+    [Export(typeof(IMoveCoordinator))]
+    public class MoveCoordinator : IMoveCoordinator
     {
         public void Move( IMarsSurface surface, IMartianRobot robot, MoveAction moveAction )
         {
             if( robot.State == MarsRobotState.Lost )
             {
-                throw new ArgumentException( nameof(robot) );
+                return;
             }
 
             switch( moveAction )
@@ -35,15 +37,16 @@ namespace MartianRobots
             var expectedRobotPosition = CalculatePosition(
                 robot.Position,
                 robot.Direction);
-            //TODO check this place
+
             if (expectedRobotPosition.X < 0 ||
                 expectedRobotPosition.Y < 0 ||
-                expectedRobotPosition.X > surface.Surface.Rank ||
-                expectedRobotPosition.Y > surface.Surface.Length )
+                expectedRobotPosition.X > surface.Surface.GetLength( 0 ) - 1 ||
+                expectedRobotPosition.Y > surface.Surface.GetLength(1) - 1 )
             {
-                robot.State = MarsRobotState.Lost;
-                surface.Surface[(int)expectedRobotPosition.X, (int)expectedRobotPosition.Y] =
+                surface.Surface[ (int)robot.Position.X, (int)robot.Position.Y ] =
                     MarsSurfacePointState.WithScent;
+                robot.State = MarsRobotState.Lost;
+                robot.Position = expectedRobotPosition;
             }
             else
             {

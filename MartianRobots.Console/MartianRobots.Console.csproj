@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VVVV.System.ComponentModel.Composition.Codeplex" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MartianRobots.Contracts\MartianRobots.Contracts.csproj" />
+    <ProjectReference Include="..\MartianRobots\MartianRobots.csproj" />
+  </ItemGroup>
+
+</Project>

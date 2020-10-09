@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace MartianRobots.Contracts
 {
@@ -8,6 +7,11 @@ namespace MartianRobots.Contracts
     /// </summary>
     public interface IMartianRobot
     {
+        IMarsSurface Surface
+        {
+            get;
+        }
+
         Vector2 Position
         {
             get;
@@ -25,5 +29,7 @@ namespace MartianRobots.Contracts
             get;
             set;
         }
+
+        void Move( MoveAction moveAction );
     }
 }

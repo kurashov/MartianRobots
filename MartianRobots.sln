@@ -5,7 +5,11 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MartianRobots", "MartianRobots\MartianRobots.csproj", "{8A14A867-E1E1-48DC-8CB7-0091859547B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartianRobots.Contracts", "MartianRobots.Contracts\MartianRobots.Contracts.csproj", "{8F9431AE-CE00-4B5F-91C5-7220E09050D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MartianRobots.Contracts", "MartianRobots.Contracts\MartianRobots.Contracts.csproj", "{8F9431AE-CE00-4B5F-91C5-7220E09050D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MartianRobots.Console", "MartianRobots.Console\MartianRobots.Console.csproj", "{68330D83-72E0-4E92-BA0B-0F5CE92FCEB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartianRobots.Test", "MartianRobots.Test\MartianRobots.Test.csproj", "{E593D9B8-DA95-446B-9198-73781855E860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{8F9431AE-CE00-4B5F-91C5-7220E09050D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F9431AE-CE00-4B5F-91C5-7220E09050D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F9431AE-CE00-4B5F-91C5-7220E09050D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68330D83-72E0-4E92-BA0B-0F5CE92FCEB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68330D83-72E0-4E92-BA0B-0F5CE92FCEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68330D83-72E0-4E92-BA0B-0F5CE92FCEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68330D83-72E0-4E92-BA0B-0F5CE92FCEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E593D9B8-DA95-446B-9198-73781855E860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E593D9B8-DA95-446B-9198-73781855E860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E593D9B8-DA95-446B-9198-73781855E860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E593D9B8-DA95-446B-9198-73781855E860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
