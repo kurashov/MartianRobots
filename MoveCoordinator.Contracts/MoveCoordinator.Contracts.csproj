@@ -5,22 +5,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\Build\Modules\</OutputPath>
+    <OutputPath>..\Build</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>..\Build\Modules\</OutputPath>
-    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <OutputPath>..\Build</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Composition" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Contracts\Common.Contracts.csproj" />
     <ProjectReference Include="..\MartianRobots.Contracts\MartianRobots.Contracts.csproj" />
-    <ProjectReference Include="..\MoveCoordinator.Contracts\MoveCoordinator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

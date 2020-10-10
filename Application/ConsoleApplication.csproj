@@ -10,7 +10,6 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>..\Build\Modules\</OutputPath>
-    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Contracts\Common.Contracts.csproj" />
+    <ProjectReference Include="..\Application.Contract\Application.Contract.csproj" />
     <ProjectReference Include="..\MartianRobots.Contracts\MartianRobots.Contracts.csproj" />
-    <ProjectReference Include="..\MoveCoordinator.Contracts\MoveCoordinator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
