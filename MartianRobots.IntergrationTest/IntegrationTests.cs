@@ -86,7 +86,7 @@ namespace MartianRobots.IntegrationTest
         [TearDown]
         public void TearDown()
         {
-
+            _container.Dispose();
         }
 
         [Test]

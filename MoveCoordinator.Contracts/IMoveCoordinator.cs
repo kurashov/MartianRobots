@@ -1,4 +1,5 @@
-﻿using MartianRobots.Contracts;
+﻿using Common.Contracts;
+using MartianRobots.Contracts;
 
 namespace MoveCoordinator.Contracts
 {

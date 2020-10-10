@@ -1,7 +1,7 @@
-﻿namespace MartianRobots.Contracts
+﻿namespace Common.Contracts
 {
     /// <summary>
-    /// Represent robots move actions.
+    /// Represent possible robots move actions.
     /// </summary>
     public enum MoveAction
     {

@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
+using Application.Contract;
 using MartianRobots.Contracts;
 
 namespace MartianRobots.Console
@@ -12,27 +13,19 @@ namespace MartianRobots.Console
         {
             var assemblyLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            if (assemblyLocation == null)
-            {
-                throw new InvalidOperationException("Failed to get assembly location.");
-            }
+            var modulesPath = Path.Combine(assemblyLocation!, "..\\Modules\\netstandard2.0");
 
-            var modulesPath = Path.Combine(assemblyLocation, "..\\Modules\\netstandard2.0");
+            //Setup the container
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
+            catalog.Catalogs.Add(new DirectoryCatalog(modulesPath));
 
-            //var marsSurfaceFactory = new MarsSurfaceFactory();
-            ////var moveCoordinator = new MoveCoordinator();
-            //var martianRobotFactory = new MartianRobotFactory( moveCoordinator );
+            var container = new CompositionContainer(catalog);
 
-            using (var dc = new DirectoryCatalog(modulesPath))
-            {
-                using (var container = new CompositionContainer(dc))
-                {
-                    var marsSurfaceFactory = container.GetExportedValue<IMarsSurfaceFactory>();
-                    var martianRobotFactory = container.GetExportedValue<IMartianRobotFactory>();
-                }
-            }
+            container.Compose(new CompositionBatch());
+            var application = container.GetExportedValue<IApplication>();
 
-
+            application.Run();
         }
     }
 }
