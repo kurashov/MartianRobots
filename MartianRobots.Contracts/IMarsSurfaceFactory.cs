@@ -2,6 +2,6 @@
 {
     public interface IMarsSurfaceFactory
     {
-        IMarsSurface Create( int x, int y );
+        IMarsSurface Create(Vector2 upperRightCorner);
     }
 }

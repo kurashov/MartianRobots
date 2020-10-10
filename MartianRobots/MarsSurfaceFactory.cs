@@ -6,9 +6,9 @@ namespace MartianRobots
     [Export(typeof(IMarsSurfaceFactory))]
     public class MarsSurfaceFactory : IMarsSurfaceFactory
     {
-        public IMarsSurface Create(int x, int y)
+        public IMarsSurface Create(Vector2 upperRightCorner)
         {
-            return new MarsSurface( x, y );
+            return new MarsSurface( upperRightCorner );
         }
     }
 }

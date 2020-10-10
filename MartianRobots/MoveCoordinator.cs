@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Composition;
-using System.Numerics;
+using System.Runtime.CompilerServices;
 using MartianRobots.Contracts;
 
+[assembly: InternalsVisibleTo("MartianRobots.Test")]
 namespace MartianRobots
 {
     [Export(typeof(IMoveCoordinator))]
@@ -38,15 +39,21 @@ namespace MartianRobots
                 robot.Position,
                 robot.Direction);
 
-            if (expectedRobotPosition.X < 0 ||
-                expectedRobotPosition.Y < 0 ||
-                expectedRobotPosition.X > surface.Surface.GetLength( 0 ) - 1 ||
-                expectedRobotPosition.Y > surface.Surface.GetLength(1) - 1 )
+            if ( !surface.InSurface( expectedRobotPosition ) )
             {
-                surface.Surface[ (int)robot.Position.X, (int)robot.Position.Y ] =
-                    MarsSurfacePointState.WithScent;
-                robot.State = MarsRobotState.Lost;
-                robot.Position = expectedRobotPosition;
+                if( surface.Surface[robot.Position.X, robot.Position.Y] 
+                    == MarsSurfacePointState.WithScent )
+                {
+                    //Do nothing
+                }
+                else
+                {
+                    surface.Surface[robot.Position.X, robot.Position.Y] =
+                        MarsSurfacePointState.WithScent;
+
+                    robot.State = MarsRobotState.Lost;
+                    robot.Position = expectedRobotPosition;
+                } 
             }
             else
             {
@@ -98,19 +105,26 @@ namespace MartianRobots
 
         private Vector2 CalculatePosition( Vector2 position, Direction direction )
         {
+            Vector2 shift = new Vector2();
             switch( direction )
             {
                 case Direction.East:
-                    return new Vector2( position.X + 1, position.Y );
+                    shift = new Vector2( 1, 0 );
+                    break;
                 case Direction.North:
-                    return new Vector2( position.X, position.Y + 1 );
+                    shift = new Vector2( 0, 1 );
+                    break;
                 case Direction.South:
-                    return new Vector2( position.X, position.Y - 1 );
+                    shift = new Vector2( 0, -1 );
+                    break;
                 case Direction.West:
-                    return new Vector2( position.X - 1, position.Y );
+                    shift = new Vector2( -1, 0 );
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException( nameof(direction), direction, null );
             }
+
+            return position + shift;
         }
     }
 }

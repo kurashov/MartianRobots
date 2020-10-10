@@ -1,9 +1,10 @@
-﻿using System.Numerics;
+﻿using System.Runtime.CompilerServices;
 using MartianRobots.Contracts;
 
+[assembly: InternalsVisibleTo("MartianRobots.Test")]
 namespace MartianRobots
 {
-    public class MartianRobot : IMartianRobot
+    internal class MartianRobot : IMartianRobot
     {
         private readonly IMoveCoordinator _moveCoordinator;
 

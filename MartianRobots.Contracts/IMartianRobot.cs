@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace MartianRobots.Contracts
+﻿namespace MartianRobots.Contracts
 {
     /// <summary>
     /// Represent martian robot.

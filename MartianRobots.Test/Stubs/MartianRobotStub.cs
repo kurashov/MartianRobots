@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Numerics;
 using MartianRobots.Contracts;
 
-namespace MartianRobots.Test
+namespace MartianRobots.Test.Stubs
 {
     internal class MartianRobotStub : IMartianRobot
     {

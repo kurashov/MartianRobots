@@ -9,5 +9,7 @@
         {
             get;
         }
+
+        bool InSurface( Vector2 coordinate );
     }
 }
