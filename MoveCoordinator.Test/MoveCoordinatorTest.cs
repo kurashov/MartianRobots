@@ -1,8 +1,10 @@
+using Common.Contracts;
 using MartianRobots.Contracts;
-using MartianRobots.Test.Stubs;
+using MoveCoordinator.Contracts;
+using MoveCoordinatorV1.Test.Stubs;
 using NUnit.Framework;
 
-namespace MartianRobots.Test
+namespace MoveCoordinatorV1.Test
 {
     [TestFixture]
     public class MoveCoordinatorTest
@@ -42,9 +44,7 @@ namespace MartianRobots.Test
             _testee.Move(marsSurface, robot, MoveAction.Forward);
 
             Assert.AreEqual(Direction.East, robot.Direction);
-            Assert.AreEqual(
-                new Vector2(startPosition.X + 1, startPosition.Y),
-                robot.Position);
+            Assert.AreEqual( startPosition, robot.Position);
             Assert.AreEqual( MarsRobotState.Lost, robot.State );
             Assert.AreEqual( MarsSurfacePointState.WithScent, 
                 marsSurface.Surface[4, 1] );
@@ -129,9 +129,7 @@ namespace MartianRobots.Test
             _testee.Move(marsSurface, robot, MoveAction.Forward);
 
             Assert.AreEqual(Direction.South, robot.Direction);
-            Assert.AreEqual(
-                new Vector2(startPosition.X, startPosition.Y - 1),
-                robot.Position);
+            Assert.AreEqual(startPosition, robot.Position);
             Assert.AreEqual(MarsRobotState.Lost, robot.State);
             Assert.AreEqual(MarsSurfacePointState.WithScent,
                 marsSurface.Surface[1, 0]);
@@ -215,9 +213,7 @@ namespace MartianRobots.Test
             _testee.Move(marsSurface, robot, MoveAction.Forward);
 
             Assert.AreEqual(Direction.West, robot.Direction);
-            Assert.AreEqual(
-                new Vector2(startPosition.X - 1, startPosition.Y),
-                robot.Position);
+            Assert.AreEqual( startPosition, robot.Position);
             Assert.AreEqual(MarsRobotState.Lost, robot.State);
             Assert.AreEqual(MarsSurfacePointState.WithScent,
                 marsSurface.Surface[0, 1]);
@@ -301,9 +297,7 @@ namespace MartianRobots.Test
             _testee.Move(marsSurface, robot, MoveAction.Forward);
 
             Assert.AreEqual(Direction.North, robot.Direction);
-            Assert.AreEqual(
-                new Vector2(startPosition.X, startPosition.Y + 1),
-                robot.Position);
+            Assert.AreEqual( startPosition, robot.Position);
             Assert.AreEqual(MarsRobotState.Lost, robot.State);
             Assert.AreEqual(MarsSurfacePointState.WithScent,
                 marsSurface.Surface[0, 2]);

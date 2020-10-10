@@ -1,5 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
+using Common.Contracts;
 using MartianRobots.Contracts;
+using MoveCoordinator.Contracts;
 
 [assembly: InternalsVisibleTo("MartianRobots.Test")]
 namespace MartianRobots

@@ -1,4 +1,6 @@
-﻿namespace MartianRobots.Contracts
+﻿using Common.Contracts;
+
+namespace MartianRobots.Contracts
 {
     public interface IMartianRobotFactory
     {

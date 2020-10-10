@@ -1,7 +1,8 @@
+using Common.Contracts;
 using MartianRobots.Contracts;
 using Moq;
+using MoveCoordinator.Contracts;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 
 namespace MartianRobots.Test
 {

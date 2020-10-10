@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Composition;
+using System.ComponentModel.Composition;
 using System.Runtime.CompilerServices;
+using Common.Contracts;
 using MartianRobots.Contracts;
+using MoveCoordinator.Contracts;
 
-[assembly: InternalsVisibleTo("MartianRobots.Test")]
-namespace MartianRobots
+[assembly: InternalsVisibleTo("MoveCoordinator.Test")]
+namespace MoveCoordinatorV1
 {
     [Export(typeof(IMoveCoordinator))]
     public class MoveCoordinator : IMoveCoordinator
@@ -52,7 +54,6 @@ namespace MartianRobots
                         MarsSurfacePointState.WithScent;
 
                     robot.State = MarsRobotState.Lost;
-                    robot.Position = expectedRobotPosition;
                 } 
             }
             else

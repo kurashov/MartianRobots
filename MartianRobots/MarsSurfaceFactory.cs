@@ -1,5 +1,6 @@
-﻿using MartianRobots.Contracts;
-using System.Composition;
+﻿using System.ComponentModel.Composition;
+using Common.Contracts;
+using MartianRobots.Contracts;
 
 namespace MartianRobots
 {

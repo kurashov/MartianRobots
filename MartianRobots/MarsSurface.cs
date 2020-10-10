@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using Common.Contracts;
 using MartianRobots.Contracts;
 
 [assembly: InternalsVisibleTo("MartianRobots.Test")]

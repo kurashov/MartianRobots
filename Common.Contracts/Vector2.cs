@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MartianRobots.Contracts
+namespace Common.Contracts
 {
     public struct Vector2 : IEquatable<Vector2>
     {

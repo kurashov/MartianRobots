@@ -1,4 +1,4 @@
-using MartianRobots.Contracts;
+using Common.Contracts;
 using NUnit.Framework;
 
 namespace MartianRobots.Test
@@ -26,9 +26,9 @@ namespace MartianRobots.Test
         public void InSurface_WhenCoordinateNotInSurface_ReturnFalse()
         {
             Assert.AreEqual(false, _testee.InSurface(new Vector2(-1, 1)));
-            Assert.AreEqual(false, _testee.InSurface(new Vector2(5, 0)));
-            Assert.AreEqual(false, _testee.InSurface(new Vector2(4, 3)));
-            Assert.AreEqual(false, _testee.InSurface(new Vector2(5, 2)));
+            Assert.AreEqual(false, _testee.InSurface(new Vector2(6, 0)));
+            Assert.AreEqual(false, _testee.InSurface(new Vector2(4, 4)));
+            Assert.AreEqual(false, _testee.InSurface(new Vector2(5, -1)));
         }
     }
 }

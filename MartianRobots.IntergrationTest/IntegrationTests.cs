@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
+using Common.Contracts;
 using MartianRobots.Contracts;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NUnit.Framework;
 
-namespace MartianRobots.Test
+namespace MartianRobots.IntegrationTest
 {
     [TestFixture]
     public class IntegrationTests
     {
+        private CompositionContainer _container;
+
         private IMarsSurfaceFactory _marsSurfaceFactory;
         private IMartianRobotFactory _martianRobotFactory;
 
-        private List<MoveAction> _firstRobotCommands = new List<MoveAction>()
+        private readonly List<MoveAction> _firstRobotCommands = new List<MoveAction>()
         {
             //RFRFRFRF
             MoveAction.TurnRight,
@@ -27,7 +30,7 @@ namespace MartianRobots.Test
             MoveAction.Forward
         };
 
-        private List<MoveAction> _secondRobotCommands = new List<MoveAction>()
+        private readonly List<MoveAction> _secondRobotCommands = new List<MoveAction>()
         {
             //FRRFLLFFRRFLL
             MoveAction.Forward,
@@ -45,7 +48,7 @@ namespace MartianRobots.Test
             MoveAction.TurnLeft
         };
 
-        private List<MoveAction> _thirdRobotCommands = new List<MoveAction>()
+        private readonly List<MoveAction> _thirdRobotCommands = new List<MoveAction>()
         {
             //LLFFFLFLFL
             MoveAction.TurnLeft,
@@ -67,15 +70,17 @@ namespace MartianRobots.Test
 
             var modulesPath = Path.Combine(assemblyLocation!, "..\\..\\Modules\\netstandard2.0");
 
-            using (var dc = new DirectoryCatalog(modulesPath))
-            {
-                using (var container = new CompositionContainer(dc))
-                {
-                    container.Compose(new CompositionBatch());
-                    _marsSurfaceFactory = container.GetExportedValue<IMarsSurfaceFactory>();
-                    _martianRobotFactory = container.GetExportedValue<IMartianRobotFactory>();
-                }
-            }
+            //Setup the container
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));
+            catalog.Catalogs.Add(new DirectoryCatalog(modulesPath) );
+
+            _container = new CompositionContainer(catalog);
+
+            _container.Compose(new CompositionBatch());
+            _marsSurfaceFactory = _container.GetExportedValue<IMarsSurfaceFactory>();
+            _martianRobotFactory = _container.GetExportedValue<IMartianRobotFactory>();
+        
         }
 
         [TearDown]
@@ -109,13 +114,13 @@ namespace MartianRobots.Test
             Assert.AreEqual( Direction.East, firstRobot.Direction );
             Assert.AreEqual( MarsRobotState.Active, firstRobot.State );
 
-            Assert.AreEqual(new Vector2(3, 3), firstRobot.Position);
-            Assert.AreEqual(Direction.North, firstRobot.Direction);
-            Assert.AreEqual(MarsRobotState.Lost, firstRobot.State);
+            Assert.AreEqual(new Vector2(3, 3), secondRobot.Position);
+            Assert.AreEqual(Direction.North, secondRobot.Direction);
+            Assert.AreEqual(MarsRobotState.Lost, secondRobot.State);
 
-            Assert.AreEqual(new Vector2(2, 3), firstRobot.Position);
-            Assert.AreEqual(Direction.South, firstRobot.Direction);
-            Assert.AreEqual(MarsRobotState.Active, firstRobot.State);
+            Assert.AreEqual(new Vector2(2, 3), thirdRobot.Position);
+            Assert.AreEqual(Direction.South, thirdRobot.Direction);
+            Assert.AreEqual(MarsRobotState.Active, thirdRobot.State);
         }
     }
 }

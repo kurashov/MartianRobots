@@ -1,7 +1,8 @@
 ﻿using System;
+using Common.Contracts;
 using MartianRobots.Contracts;
 
-namespace MartianRobots.Test.Stubs
+namespace MoveCoordinatorV1.Test.Stubs
 {
     internal class MartianRobotStub : IMartianRobot
     {
